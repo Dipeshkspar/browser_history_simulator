@@ -34,10 +34,14 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    user_name: 'dup10981@gmail.com',
+    password: 'Karoyamaro@9',
+    # address: 'smtp.mailgun.org',
     port: 587,
-    domain: 'xyzdomain.com', # actual domain
-    user_name: 'xyz@gmail.com', # Gmail email
-    password: 'xyz', # Gmail password
+    # domain: 'sandbox15022f74c0b04b72bcfd0410890b6978.mailgun.org', # domain
+    # user_name: 'postmaster@sandbox15022f74c0b04b72bcfd0410890b6978.mailgun.org', # email
+    # password: 'mailgun@00worklo@d', # password
     authentication: 'plain',
     enable_starttls_auto: true
   }

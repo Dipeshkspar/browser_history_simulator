@@ -17,7 +17,7 @@ class UrlHistoriesController < ApplicationController
   end
 
   def email_report
-    email = 'abc@gmail.com' # how to get the user's email, do i give user login feature as well?
+    email = 'idealdips.0080@gmail.com' # how to get the user's email, do i give user login feature as well?
     urls = UrlHistory.all.pluck(:url)
   
     EmailReportWorker.perform_async(email, urls)

@@ -26,6 +26,8 @@ gem 'sidekiq'
 gem 'redis'
 gem 'redis-namespace'
 
+gem 'mailgun-ruby'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
