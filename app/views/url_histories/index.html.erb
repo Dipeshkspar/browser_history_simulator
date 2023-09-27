@@ -1,2 +1,24 @@
-<h1>UrlHistories#index</h1>
-<p>Find me in app/views/url_histories/index.html.erb</p>
+<div class="flex-container">
+  <h1>Browser History Simulator</h1>
+    
+  <!-- Textbox form to enter a URL -->
+  <%= form_with(model: UrlHistory.new, url: url_histories_path, method: :post) do |form| %>
+    <%= form.text_field :url, placeholder: 'Enter a URL', required: true %>
+    <%= form.submit 'Go' %>
+  <% end %>
+
+  <!-- Navigation buttons -->
+  <div class="flex-div">
+    <div class="flex-back">
+      <%= link_to 'Back ', url_histories_path(back: true), id: 'btn-back' %>
+    </div>
+
+    <div>
+      <%= link_to 'Next', url_histories_path(next: true), id: 'btn-next' %>
+    </div>
+  </div>
+
+  <!-- Report email button -->
+  <%= link_to 'Email Me The Report', email_report_url_histories_path, id: 'btn-report-email' %>
+</div>
+

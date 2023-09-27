@@ -1,3 +1,19 @@
 // Place all the styles related to the UrlHistories controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-div {
+  display: flex;
+  flex-direction: row;
+  margin: 20px;
+}
+
+.flex-back {
+  margin-right: 40px;
+}
