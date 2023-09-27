@@ -1,5 +1,9 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'url_histories#index'
+
+  mount Sidekiq::Web => "url_histories/sidekiq"
 
   resources :url_histories, only: [:index, :create] do
     collection do
