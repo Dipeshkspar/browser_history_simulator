@@ -14,6 +14,15 @@
   margin: 20px;
 }
 
-.flex-back {
+.flex-back,
+.flex-next {
   margin-right: 40px;
+  background-color: aqua;
+  border-radius: 10px;
+}
+
+.btn-primary{
+  color: black;
+  padding: 20px;
+  margin: 2px;
 }

@@ -1,5 +1,6 @@
 class UrlHistoriesController < ApplicationController
   before_action :set_current_url, only: [:index]
+
   def index
     @url_histories = UrlHistory.all.order(created_at: :desc)
   end
@@ -38,5 +39,8 @@ class UrlHistoriesController < ApplicationController
     else
       UrlHistory.new
     end
+
+    @disable_back_button = @current_url.nil? || UrlHistory.where('created_at < ?', @current_url.created_at).empty?
+    @disable_next_button = @current_url.nil? || UrlHistory.where('created_at > ?', @current_url.created_at).empty?
   end
 end

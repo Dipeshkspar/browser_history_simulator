@@ -10,11 +10,11 @@
   <!-- Navigation buttons -->
   <div class="flex-div">
     <div class="flex-back">
-      <%= link_to 'Back ', url_histories_path(back: true), id: 'btn-back' %>
+      <%= link_to 'Back ', url_histories_path(back: true), class: 'btn btn-primary', id: 'btn-back', disabled: @disable_back_button %>
     </div>
 
-    <div>
-      <%= link_to 'Next', url_histories_path(next: true), id: 'btn-next' %>
+    <div class="flex-next">
+      <%= link_to 'Next', url_histories_path(next: true), class: 'btn btn-primary', id: 'btn-next', disabled: @disable_next_button %>
     </div>
   </div>
 
