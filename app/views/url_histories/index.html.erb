@@ -20,5 +20,15 @@
 
   <!-- Report email button -->
   <%= link_to 'Email Me The Report', email_report_url_histories_path, id: 'btn-report-email' %>
+
+  <h2>Current URL:</h2>
+  <p><%= @current_url.url if @current_url %></p>
+
+  <h2>Entered URLs:</h2>
+  <ul>
+    <% @url_histories.each do |url_history| %>
+      <li><%= url_history.url %></li>
+    <% end %>
+  </ul>
 </div>
 

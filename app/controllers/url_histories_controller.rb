@@ -1,4 +1,5 @@
 class UrlHistoriesController < ApplicationController
+  before_action :set_current_url, only: [:index]
   def index
     @url_histories = UrlHistory.all.order(created_at: :desc)
   end
@@ -18,5 +19,15 @@ class UrlHistoriesController < ApplicationController
 
   def url_history_params
     params.require(:url_history).permit(:url)
+  end
+
+  def set_current_url
+    @current_url = if params[:back]
+      UrlHistory.where('created_at < ?', @current_url&.created_at || Time.current).order(created_at: :desc).first
+    elsif params[:next]
+      UrlHistory.where('created_at > ?', @current_url&.created_at || Time.current).order(created_at: :asc).first
+    else
+      UrlHistory.new
+    end
   end
 end
