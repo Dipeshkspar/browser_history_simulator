@@ -15,6 +15,15 @@ class UrlHistoriesController < ApplicationController
     end
   end
 
+  def email_report
+    email = 'abc@gmail.com' # how to get the user's email, do i give user login feature as well?
+    urls = UrlHistory.all.pluck(:url)
+  
+    EmailReportWorker.perform_async(email, urls)
+  
+    redirect_to url_histories_path, notice: 'Email report is being generated and will be sent shortly.'
+  end
+
   private
 
   def url_history_params
