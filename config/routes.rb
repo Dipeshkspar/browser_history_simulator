@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "url_histories/sidekiq"
 
-  resources :url_histories, only: [:index, :create] do
+  resources :url_histories, only: [:new, :index, :create] do
     collection do
       get 'email_report', to: 'url_histories#email_report'
     end

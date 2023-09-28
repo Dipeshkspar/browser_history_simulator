@@ -1,11 +1,7 @@
 <div class="flex-container">
   <h1>Browser History Simulator</h1>
-    
-  <!-- Textbox form to enter a URL -->
-  <%= form_with(model: UrlHistory.new, url: url_histories_path, method: :post) do |form| %>
-    <%= form.text_field :url, placeholder: 'Enter a URL', id: 'url', required: true %>
-    <%= form.submit 'Go' %>
-  <% end %>
+
+  <%= link_to('Create URL', new_url_history_path) %>
 
   <!-- Navigation buttons -->
   <div class="flex-div">

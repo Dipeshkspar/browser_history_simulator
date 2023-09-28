@@ -1,0 +1,16 @@
+<div class="flex-container">
+  <% if @url_history.errors.has_key?(:url) %>
+    <div class="alert alert-danger">
+      <%= @url_history.errors[:url].first %>
+    </div>
+  <% end %>
+
+
+  <!-- Textbox form to enter a URL -->
+  <%= form_with(model: @url_history, url: url_histories_path, method: :post) do |form| %>
+    <%= form.text_field :url, placeholder: 'Enter a URL', id: 'url', required: true %>
+    <%= form.submit 'Go' %>
+  <% end %>
+
+  <%= link_to('Go to Index', url_histories_path, class: 'transfer-link') %>
+</div>

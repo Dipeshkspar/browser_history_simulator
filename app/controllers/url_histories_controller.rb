@@ -5,6 +5,10 @@ class UrlHistoriesController < ApplicationController
     @url_histories = UrlHistory.all.order(created_at: :desc)
   end
 
+  def new
+    @url_history = UrlHistory.new
+  end
+
   def create
     @url_history = UrlHistory.new(url_history_params)
     
@@ -13,7 +17,7 @@ class UrlHistoriesController < ApplicationController
       redirect_to url_histories_path
     else
       flash[:alert] = 'URL could not be saved.'
-      redirect_to url_histories_path
+      render :new
     end
   end
 
