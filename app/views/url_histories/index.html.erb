@@ -1,0 +1,49 @@
+<div class="flex-container">
+  <h1>Browser History Simulator</h1>
+
+  <%= link_to('Create URL', new_url_history_path) %>
+
+  <!-- Navigation buttons -->
+  <div class="flex-div">
+    <div class="flex-back">
+      <%if @disable_back_button %>
+        <%= link_to(
+          'Back ',
+          'javascript:void(0);',
+          class: 'btn btn-primary disabled' )
+        %>
+      <% else %>
+        <%= link_to(
+          'Back ',
+          url_histories_path(back: true, current_url: @current_url.id),
+          class: 'btn btn-primary' )
+        %>
+      <% end %>
+    </div>
+
+    <div class="flex-next">
+      <%if @disable_next_button %>
+        <%= link_to 'Next', 'javascript:void(0);', class: 'btn btn-primary disabled' %>
+      <% else %>
+        <%= link_to 'Next', url_histories_path(next: true, current_url: @current_url.id), class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Report email button -->
+  <%= form_with(url: email_report_url_histories_path, method: :get) do |form| %>
+    <input type="email" name="user_email" id="user_email" placeholder="Enter your email" required>
+    <%= form.submit 'Email Me The Report', id: 'btn-report-email' %>
+  <% end %>
+
+  <h2>Current URL:</h2>
+  <p><%= @current_url.url if @current_url %></p>
+
+  <h2>Entered URLs:</h2>
+  <ul>
+    <% @url_histories.each do |url_history| %>
+      <li><%= url_history.url %></li>
+    <% end %>
+  </ul>
+</div>
+

@@ -38,6 +38,18 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.mailgun.org',
+    port: 587,
+    domain: 'sandbox15022f74c0b04b72bcfd0410890b6978.mailgun.org', # domain
+    user_name: 'postmaster@sandbox15022f74c0b04b72bcfd0410890b6978.mailgun.org', # email
+    password: 'mailgun@00worklo@d', # password
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
+
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
@@ -54,6 +66,8 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
+
+  config.active_job.queue_adapter = :sidekiq
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
