@@ -9,7 +9,8 @@ class UrlHistoriesController < ApplicationController
     @url_history = UrlHistory.new(url_history_params)
     
     if @url_history.save
-      redirect_to url_histories_path, notice: 'URL was successfully saved.'
+      flash[:success] = 'URL was successfully saved.'
+      redirect_to url_histories_path
     else
       flash[:alert] = 'URL could not be saved.'
       redirect_to url_histories_path
@@ -21,8 +22,6 @@ class UrlHistoriesController < ApplicationController
     urls = UrlHistory.all.pluck(:url)
   
     EmailReportWorker.perform_async(email, urls)
-  
-    redirect_to url_histories_path, notice: 'Email report is being generated and will be sent shortly.'
   end
 
   private
@@ -32,12 +31,14 @@ class UrlHistoriesController < ApplicationController
   end
 
   def set_current_url
+    @current_url = UrlHistory.find(params[:current_url]) if params[:current_url].present?
+
     @current_url = if params[:back]
       UrlHistory.where('created_at < ?', @current_url&.created_at || Time.current).order(created_at: :desc).first
     elsif params[:next]
       UrlHistory.where('created_at > ?', @current_url&.created_at || Time.current).order(created_at: :asc).first
     else
-      UrlHistory.new
+      UrlHistory.order(created_at: :desc).first
     end
 
     @disable_back_button = @current_url.nil? || UrlHistory.where('created_at < ?', @current_url.created_at).empty?

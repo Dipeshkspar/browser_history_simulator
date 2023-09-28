@@ -11,18 +11,24 @@
 .flex-div {
   display: flex;
   flex-direction: row;
-  margin: 20px;
+  margin: 40px;
 }
 
 .flex-back,
 .flex-next {
   margin-right: 40px;
-  background-color: aqua;
+  background-color: rgb(239, 241, 241);
   border-radius: 10px;
 }
 
 .btn-primary{
   color: black;
   padding: 20px;
-  margin: 2px;
+  margin: 10px;
+}
+
+.disabled {
+  color: gray;
+  cursor: not-allowed;
+  pointer-events: none; /* This prevents click events on the disabled link */
 }

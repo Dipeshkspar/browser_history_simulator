@@ -10,11 +10,27 @@
   <!-- Navigation buttons -->
   <div class="flex-div">
     <div class="flex-back">
-      <%= link_to 'Back ', url_histories_path(back: true), class: 'btn btn-primary', id: 'btn-back', disabled: @disable_back_button %>
+      <%if @disable_back_button %>
+        <%= link_to(
+          'Back ',
+          'javascript:void(0);',
+          class: 'btn btn-primary disabled' )
+        %>
+      <% else %>
+        <%= link_to(
+          'Back ',
+          url_histories_path(back: true, current_url: @current_url.id),
+          class: 'btn btn-primary' )
+        %>
+      <% end %>
     </div>
 
     <div class="flex-next">
-      <%= link_to 'Next', url_histories_path(next: true), class: 'btn btn-primary', id: 'btn-next', disabled: @disable_next_button %>
+      <%if @disable_next_button %>
+        <%= link_to 'Next', 'javascript:void(0);', class: 'btn btn-primary disabled' %>
+      <% else %>
+        <%= link_to 'Next', url_histories_path(next: true, current_url: @current_url.id), class: 'btn btn-primary' %>
+      <% end %>
     </div>
   </div>
 
