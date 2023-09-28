@@ -10,12 +10,12 @@ RSpec.describe UrlHistoriesController, type: :controller do
     end
 
     it 'redirects to the index page' do
-      post :create, params: { url_history: { url: url_history } }
+      post :create, params: { url_history: { url: url_history[:url] } }
       expect(response).to redirect_to(url_histories_path)
     end
 
     it 'displays a success flash message' do
-      post :create, params: { url_history: { url: url_history } }
+      post :create, params: { url_history: { url: url_history[:url] } }
       expect(flash[:success]).to eq('URL was successfully saved.')
     end
   end
