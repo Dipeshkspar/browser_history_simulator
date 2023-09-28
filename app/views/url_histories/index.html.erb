@@ -35,7 +35,10 @@
   </div>
 
   <!-- Report email button -->
-  <%= link_to 'Email Me The Report', email_report_url_histories_path, id: 'btn-report-email' %>
+  <%= form_with(url: email_report_url_histories_path, method: :get) do |form| %>
+    <input type="email" name="user_email" id="user_email" placeholder="Enter your email" required>
+    <%= form.submit 'Email Me The Report', id: 'btn-report-email' %>
+  <% end %>
 
   <h2>Current URL:</h2>
   <p><%= @current_url.url if @current_url %></p>
