@@ -3,7 +3,7 @@
     
   <!-- Textbox form to enter a URL -->
   <%= form_with(model: UrlHistory.new, url: url_histories_path, method: :post) do |form| %>
-    <%= form.text_field :url, placeholder: 'Enter a URL', required: true %>
+    <%= form.text_field :url, placeholder: 'Enter a URL', id: 'url', required: true %>
     <%= form.submit 'Go' %>
   <% end %>
 

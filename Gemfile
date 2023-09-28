@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'rspec-sidekiq'
 end
 
 group :development do
